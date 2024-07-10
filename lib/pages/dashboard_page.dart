@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ful_result_checker/features/pages/dashboard_home_view.dart';
-import 'package:ful_result_checker/features/pages/dashboard_profile_view.dart';
+import 'package:ful_result_checker/pages/dashboard_home_view.dart';
+import 'package:ful_result_checker/pages/dashboard_profile_view.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});

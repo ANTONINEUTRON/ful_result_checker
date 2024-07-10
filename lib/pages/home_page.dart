@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ful_result_checker/features/pages/dashboard_page.dart';
+import 'package:ful_result_checker/pages/dashboard_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
