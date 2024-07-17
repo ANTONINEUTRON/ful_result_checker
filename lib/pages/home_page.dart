@@ -40,10 +40,7 @@ class _HomePageState extends State<HomePage> {
                 const SizedBox(height: 10),
                 const Text(
                   'Result Checker',
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold
-                  ),
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 50),
@@ -75,7 +72,6 @@ class _HomePageState extends State<HomePage> {
                                     border: OutlineInputBorder(),
                                     label: Text("Enter your matric number"),
                                   ),
-
                                 ),
                                 const SizedBox(
                                   height: 16,
@@ -87,7 +83,9 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                   obscureText: true,
                                 ),
-                                const SizedBox(height: 24,),
+                                const SizedBox(
+                                  height: 24,
+                                ),
                                 ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                     padding: const EdgeInsets.symmetric(
@@ -98,7 +96,10 @@ class _HomePageState extends State<HomePage> {
                                     backgroundColor: Colors.green,
                                     foregroundColor: Colors.white,
                                   ),
-                                  onPressed: () => Navigator.push(context, DashboardPage.route()),
+                                  onPressed: () => Navigator.pushReplacement(
+                                    context,
+                                    DashboardPage.route(),
+                                  ),
                                   child: const Text("Submit"),
                                 )
                               ],
@@ -109,7 +110,9 @@ class _HomePageState extends State<HomePage> {
                           onPressed: () => _toggleShowLogin(),
                           style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 50, vertical: 15),
+                              horizontal: 50,
+                              vertical: 15,
+                            ),
                             textStyle: const TextStyle(fontSize: 18),
                           ),
                           child: const Text('Get Started'),

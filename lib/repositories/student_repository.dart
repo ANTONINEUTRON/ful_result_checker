@@ -4,15 +4,15 @@ import 'package:ful_result_checker/model/student.dart';
 
 class StudentRepository {
   Student getStudent(String accessKey) {
-    return students.elementAt(
-      students.indexWhere((student) {
+    return _students.elementAt(
+      _students.indexWhere((student) {
         return student.password == accessKey;
       }),
     );
   }
 }
 
-List<Student> students = [
+List<Student> _students = [
   Student(
     matric: 'MAT001',
     name: 'Alice Johnson',
@@ -90,14 +90,14 @@ List<Semester> generateSemesters(int count) {
   for (int i = 1; i <= count; i++) {
     semesters.add(Semester(
       title: 'Semester $i',
-      courses: generateCourses(),
+      courses: _generateCourses(),
       gpa: (2.5 + i * 0.2).clamp(0.0, 4.0),
     ));
   }
   return semesters;
 }
 
-List<Course> generateCourses() {
+List<Course> _generateCourses() {
   return [
     Course(
       code: 'CSC101',
