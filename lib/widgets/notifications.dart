@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:ful_result_checker/pages/dashboard_home_view.dart';
 import 'package:ful_result_checker/widgets/notification_card.dart';
 
 class Notifications extends StatefulWidget {

@@ -1,21 +1,26 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:ful_result_checker/model/course.dart';
+import 'package:ful_result_checker/model/semester.dart';
+import 'package:ful_result_checker/model/student.dart';
 import 'package:ful_result_checker/pages/result_view_page.dart';
 
 class CourseItem extends StatelessWidget {
-  final int index;
-
   const CourseItem({
     super.key,
-    required this.index,
+    required this.index, required this.semester,
   });
+
+  final int index;
+  final Semester semester;
+
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, ResultViewPage.route());
+        Navigator.push(context, ResultViewPage.route(semester: semester),);
       },
       child: Card(
         child: Center(
@@ -23,11 +28,11 @@ class CourseItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
-                "100 Level \n1st Semester",
+                semester.title,
                 style: Theme.of(context).textTheme.titleMedium,
                 textAlign: TextAlign.center,
               ),
-              Text("12 courses"),
+              Text("${semester.courses.length} courses"),
             ],
           ),
         ),

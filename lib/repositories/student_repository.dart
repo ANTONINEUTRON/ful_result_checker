@@ -3,12 +3,29 @@ import 'package:ful_result_checker/model/semester.dart';
 import 'package:ful_result_checker/model/student.dart';
 
 class StudentRepository {
-  Student getStudent(String accessKey) {
-    return _students.elementAt(
-      _students.indexWhere((student) {
-        return student.password == accessKey;
-      }),
-    );
+  Student? getStudent(String matricNo, String accessKey) {
+    var indexWhere = _students.indexWhere((student) {
+      return student.matric == matricNo && student.password == accessKey;
+    });
+
+    return indexWhere < 0
+        ? null
+        : _students.elementAt(
+            indexWhere,
+          );
+  }
+
+  static String getSession(int semsNumber) {
+    switch (semsNumber) {
+      case 1 || 2:
+        return "100 Level";
+      case 3 || 4:
+        return "200 Level";
+      case 5 || 6:
+        return "300 Level";
+      default:
+        return "400 Level";
+    }
   }
 }
 

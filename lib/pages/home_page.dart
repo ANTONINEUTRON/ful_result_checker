@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ful_result_checker/pages/dashboard_page.dart';
+import 'package:ful_result_checker/repositories/student_repository.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -10,6 +11,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool showLogin = false;
+  String? errorText;
+  bool donotShowPassword = true;
+
+  String? matricNo;
+  String? accessKey;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,21 +74,30 @@ class _HomePageState extends State<HomePage> {
                                 const SizedBox(
                                   height: 16,
                                 ),
-                                const TextField(
+                                TextField(
                                   decoration: InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    label: Text("Enter your matric number"),
+                                    border: const OutlineInputBorder(),
+                                    label: const Text("Enter your matric number"),
+                                    errorText: errorText,
                                   ),
+                                  onChanged: (value) => matricNo = value,
                                 ),
                                 const SizedBox(
                                   height: 16,
                                 ),
-                                const TextField(
+                                TextField(
                                   decoration: InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    label: Text("Access Key"),
+                                    border: const OutlineInputBorder(),
+                                    label: const Text("Access Key"),
+                                    suffix: GestureDetector(
+                                      child: const Icon(Icons.remove_red_eye_outlined),
+                                      onTap: () =>setState(() {
+                                        donotShowPassword = !donotShowPassword;
+                                      }),
+                                    ),
                                   ),
-                                  obscureText: true,
+                                  obscureText: donotShowPassword,
+                                  onChanged: (value) => accessKey = value,
                                 ),
                                 const SizedBox(
                                   height: 24,
@@ -96,10 +112,25 @@ class _HomePageState extends State<HomePage> {
                                     backgroundColor: Colors.green,
                                     foregroundColor: Colors.white,
                                   ),
-                                  onPressed: () => Navigator.pushReplacement(
-                                    context,
-                                    DashboardPage.route(),
-                                  ),
+                                  onPressed: () {
+                                    var student =
+                                        StudentRepository().getStudent(
+                                      matricNo ?? "",
+                                      accessKey ?? "",
+                                    );
+
+                                    if (student != null) {
+                                      Navigator.pushReplacement(
+                                        context,
+                                        DashboardPage.route(student: student),
+                                      );
+                                    } else {
+                                      setState(() {
+                                        errorText =
+                                            "Student record not found. Verify the access key";
+                                      });
+                                    }
+                                  },
                                   child: const Text("Submit"),
                                 )
                               ],

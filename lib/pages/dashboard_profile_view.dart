@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:ful_result_checker/model/student.dart';
 
 class DashboardProfileView extends StatelessWidget {
-  const DashboardProfileView({super.key});
+  const DashboardProfileView({
+    super.key,
+    required this.student,
+  });
+  
+  final Student student;
 
   @override
   Widget build(BuildContext context) {
@@ -20,15 +26,16 @@ class DashboardProfileView extends StatelessWidget {
               size: 200,
             ),
           ),
-          const Text(
-            "Username",
+           Text(
+            student.name,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 18,
+              fontWeight: FontWeight.bold
             ),
           ),
-          const Text(
-            "User Email",
+           Text(
+            student.matric,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 18,
@@ -62,7 +69,7 @@ class DashboardProfileView extends StatelessWidget {
 class ProfileItems extends StatelessWidget {
   const ProfileItems({
     super.key,
-    required this.title, 
+    required this.title,
     this.color,
   });
 

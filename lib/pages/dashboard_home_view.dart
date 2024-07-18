@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:ful_result_checker/pages/result_view_page.dart';
+import 'package:ful_result_checker/model/student.dart';
 import 'package:ful_result_checker/widgets/course_item.dart';
 import 'package:ful_result_checker/widgets/notifications.dart';
 
 class DashboardHomeView extends StatelessWidget {
-  const DashboardHomeView({super.key});
+  const DashboardHomeView({
+    super.key,
+    required this.student,
+  });
+
+  final Student student;
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +31,12 @@ class DashboardHomeView extends StatelessWidget {
                 ),
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: 8,
+                itemCount: student.semesters.length,
                 itemBuilder: (context, index) {
-                  return CourseItem(index: index);
+                  return CourseItem(
+                    index: index,
+                    semester: student.semesters[index],
+                  );
                 },
               ),
             ),
