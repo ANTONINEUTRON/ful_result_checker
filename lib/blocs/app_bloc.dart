@@ -11,4 +11,7 @@ class AppBloc extends Cubit<AppState> {
     );
   }
 
+  void signOut() {
+    emit(const AppState());
+  }
 }
