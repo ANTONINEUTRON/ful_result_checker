@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ful_result_checker/blocs/app_bloc.dart';
 import 'package:ful_result_checker/model/student.dart';
 import 'package:ful_result_checker/widgets/course_item.dart';
 import 'package:ful_result_checker/widgets/notifications.dart';
@@ -6,13 +8,12 @@ import 'package:ful_result_checker/widgets/notifications.dart';
 class DashboardHomeView extends StatelessWidget {
   const DashboardHomeView({
     super.key,
-    required this.student,
   });
-
-  final Student student;
 
   @override
   Widget build(BuildContext context) {
+    Student student = context.read<AppBloc>().state.student!;
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(

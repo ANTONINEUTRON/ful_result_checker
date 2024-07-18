@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ful_result_checker/blocs/app_bloc.dart';
 import 'package:ful_result_checker/model/student.dart';
 
 class DashboardProfileView extends StatelessWidget {
   const DashboardProfileView({
     super.key,
-    required this.student,
   });
-  
-  final Student student;
 
   @override
   Widget build(BuildContext context) {
+     Student student = context.read<AppBloc>().state.student!;
+
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -26,15 +27,12 @@ class DashboardProfileView extends StatelessWidget {
               size: 200,
             ),
           ),
-           Text(
+          Text(
             student.name,
             textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold
-            ),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
-           Text(
+          Text(
             student.matric,
             textAlign: TextAlign.center,
             style: TextStyle(

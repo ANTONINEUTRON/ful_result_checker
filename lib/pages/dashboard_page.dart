@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ful_result_checker/blocs/app_bloc.dart';
 import 'package:ful_result_checker/model/student.dart';
 import 'package:ful_result_checker/pages/dashboard_home_view.dart';
 import 'package:ful_result_checker/pages/dashboard_profile_view.dart';
 
 class DashboardPage extends StatefulWidget {
-  const DashboardPage({super.key, required this.student});
+  const DashboardPage({
+    super.key,
+  });
 
-  final Student student;
-
-  static route({required Student student}) => MaterialPageRoute(
-        builder: (context) =>  DashboardPage(student: student,),
+  static route() => MaterialPageRoute(
+        builder: (context) => DashboardPage(),
       );
 
   @override
@@ -20,13 +22,14 @@ class _DashboardPageState extends State<DashboardPage> {
   int _index = 0;
   late List<Widget> _pages;
 
-@override
+  @override
   void initState() {
     super.initState();
-    _pages = [
-    DashboardHomeView(student: widget.student,),
-    DashboardProfileView(student: widget.student,),
-  ];
+
+    _pages = const [
+      DashboardHomeView(),
+      DashboardProfileView(),
+    ];
   }
 
   @override

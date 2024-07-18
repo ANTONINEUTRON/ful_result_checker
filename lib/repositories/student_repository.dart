@@ -14,19 +14,6 @@ class StudentRepository {
             indexWhere,
           );
   }
-
-  static String getSession(int semsNumber) {
-    switch (semsNumber) {
-      case 1 || 2:
-        return "100 Level";
-      case 3 || 4:
-        return "200 Level";
-      case 5 || 6:
-        return "300 Level";
-      default:
-        return "400 Level";
-    }
-  }
 }
 
 List<Student> _students = [
@@ -106,12 +93,36 @@ List<Semester> generateSemesters(int count) {
   List<Semester> semesters = [];
   for (int i = 1; i <= count; i++) {
     semesters.add(Semester(
-      title: 'Semester $i',
+      title: _getSessionTitle(i),
       courses: _generateCourses(),
       gpa: (2.5 + i * 0.2).clamp(0.0, 4.0),
     ));
   }
   return semesters;
+}
+
+_getSessionTitle(int i) {
+  switch (i) {
+    case 1:
+      return "100 Level \n1st Semester";
+    case 2:
+      return "100 Level \n2nd Semester";
+    case 3:
+      return "200 Level \n1st Semester";
+    case 4:
+      return "200 Level \n2nd Semester";
+    case 5:
+      return "300 Level \n1st Semester";
+    case 6:
+      return "300 Level \n2nd Semester";
+    case 7:
+      return "400 Level \n1st Semester";
+    case 8:
+      return "400 Level \n2nd Semester";
+
+    default:
+      return "Spill Over Session";
+  }
 }
 
 List<Course> _generateCourses() {

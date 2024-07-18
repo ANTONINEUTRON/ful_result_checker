@@ -1,9 +1,5 @@
-
-
 import 'package:flutter/material.dart';
-import 'package:ful_result_checker/model/course.dart';
 import 'package:ful_result_checker/model/semester.dart';
-import 'package:ful_result_checker/model/student.dart';
 import 'package:ful_result_checker/pages/result_view_page.dart';
 
 class CourseItem extends StatelessWidget {

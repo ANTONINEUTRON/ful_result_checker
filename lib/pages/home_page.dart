@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ful_result_checker/blocs/app_bloc.dart';
 import 'package:ful_result_checker/pages/dashboard_page.dart';
 import 'package:ful_result_checker/repositories/student_repository.dart';
 
@@ -77,7 +79,8 @@ class _HomePageState extends State<HomePage> {
                                 TextField(
                                   decoration: InputDecoration(
                                     border: const OutlineInputBorder(),
-                                    label: const Text("Enter your matric number"),
+                                    label:
+                                        const Text("Enter your matric number"),
                                     errorText: errorText,
                                   ),
                                   onChanged: (value) => matricNo = value,
@@ -90,8 +93,9 @@ class _HomePageState extends State<HomePage> {
                                     border: const OutlineInputBorder(),
                                     label: const Text("Access Key"),
                                     suffix: GestureDetector(
-                                      child: const Icon(Icons.remove_red_eye_outlined),
-                                      onTap: () =>setState(() {
+                                      child: const Icon(
+                                          Icons.remove_red_eye_outlined),
+                                      onTap: () => setState(() {
                                         donotShowPassword = !donotShowPassword;
                                       }),
                                     ),
@@ -120,10 +124,16 @@ class _HomePageState extends State<HomePage> {
                                     );
 
                                     if (student != null) {
-                                      Navigator.pushReplacement(
-                                        context,
-                                        DashboardPage.route(student: student),
-                                      );
+                                      context
+                                          .read<AppBloc>()
+                                          .setLoggedInUser(student)
+                                          .then(
+                                            (value) =>
+                                                Navigator.pushReplacement(
+                                              context,
+                                              DashboardPage.route(),
+                                            ),
+                                          );
                                     } else {
                                       setState(() {
                                         errorText =
